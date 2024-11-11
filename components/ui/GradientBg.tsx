@@ -56,7 +56,7 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, []);
+  });
 
   useEffect(() => {
     function move() {
@@ -84,7 +84,7 @@ export const BackgroundGradientAnimation = ({
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-  }, []);
+  });
 
   return (
     <div

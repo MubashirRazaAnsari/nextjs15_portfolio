@@ -36,7 +36,7 @@ const Hero = () => {
           words='Transforming Concepts into Seamless Experience' />
         </div>
         <p className='text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl'>
-          Hey, I'm Mubashir, Front-end developer based in Pakistan.
+          Hey, I&apos;m Mubashir, Front-end developer based in Pakistan.
         </p>
         <Link href='#projects' >
         <HeroButton 

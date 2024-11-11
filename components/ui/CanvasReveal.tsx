@@ -254,7 +254,7 @@ const ShaderMaterial = ({
     return preparedUniforms;
   };
 
-  // Shader material
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const material = useMemo(() => {
     const materialObject = new THREE.ShaderMaterial({
       vertexShader: `
