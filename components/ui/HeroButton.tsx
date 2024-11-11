@@ -11,7 +11,7 @@ const HeroButton = ({
   icon: React.ReactNode;
   position: string;
   handleClick?: () => void;
-  otherClasses: string;
+  otherClasses?: string;
 }) => {
   return (
     <button className="p-[3px] relative"

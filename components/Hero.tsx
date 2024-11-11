@@ -3,11 +3,12 @@ import { Spotlight } from './ui/Spotlight';
 import { TextGenerateEffect } from './ui/TextGenerated';
 import HeroButton from './ui/HeroButton';
 import { FaLocationArrow } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
     
-    <div className="pb-20 pt-36">
+    <div id = "home" className="pb-20">
       <div>
         
         <Spotlight
@@ -37,13 +38,13 @@ const Hero = () => {
         <p className='text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl'>
           Hey, I'm Mubashir, Front-end developer based in Pakistan.
         </p>
-        <a href='#about' >
+        <Link href='#projects' >
         <HeroButton 
-          title='Download Resume'
+          title='Show my projects'
           icon={<FaLocationArrow />} 
           position={'right'} 
           otherClasses={''}        />
-          </a>
+          </Link>
       </div>
     </div>
   );
