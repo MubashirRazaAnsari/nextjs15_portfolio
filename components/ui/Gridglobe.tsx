@@ -394,6 +394,8 @@ export function GlobeDemo() {
     },
   ];
 
+
+
   return (
     <div className="flex items-center justify-center absolute -left-5 top-36 md:top-40 w-full h-full">
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden px-4 h-96">
@@ -406,3 +408,4 @@ export function GlobeDemo() {
     </div>
   );
 }
+

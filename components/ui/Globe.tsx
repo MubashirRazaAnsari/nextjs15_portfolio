@@ -5,7 +5,6 @@ import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
-
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
@@ -59,7 +58,7 @@ interface WorldProps {
   data: Position[];
 }
 
-let numbersOfRings: number[] = [0];
+let numbersOfRings = [0];
 
 export function Globe({ globeConfig, data }: WorldProps) {
   const [globeData, setGlobeData] = useState<
@@ -98,6 +97,29 @@ export function Globe({ globeConfig, data }: WorldProps) {
       _buildMaterial();
     }
   }, [globeRef.current]);
+  useEffect(() => {
+    if (!globeRef.current || !globeData) return;
+
+    const interval = setInterval(() => {
+      if (!globeRef.current || !globeData) return;
+
+      numbersOfRings = genRandomNumbers(
+        0,
+        data.length,
+        Math.floor((data.length * 4) / 5)
+      );
+
+      globeRef.current.ringsData(
+        globeData.filter((d, i) => numbersOfRings.includes(i))
+      );
+    }, 2000);
+
+    // Cleanup the interval on component unmount
+    return () => {
+      clearInterval(interval);
+    };
+  }, [globeRef.current, globeData]);
+  
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -116,7 +138,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   const _buildData = () => {
     const arcs = data;
-    let points: { size: number; order: number; color: (t: number) => string; lat: number; lng: number }[] = [];
+    let points = [];
     for (let i = 0; i < arcs.length; i++) {
       const arc = arcs[i];
       const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
@@ -238,7 +260,12 @@ export function WebGLRendererConfig() {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
-  });
+
+    // Cleanup function to dispose of the renderer
+    return () => {
+      gl.dispose(); // Disposes of the WebGL resources
+    };
+  }, [gl, size]);
 
   return null;
 }
@@ -266,17 +293,41 @@ export function World(props: WorldProps) {
       />
       <Globe {...props} />
       <OrbitControls
-        autoRotate={globeConfig.autoRotate}
-        autoRotateSpeed={globeConfig.autoRotateSpeed}
+        enablePan={false}
+        enableZoom={false}
+        minDistance={cameraZ}
+        maxDistance={cameraZ}
+        autoRotateSpeed={1}
+        autoRotate={true}
+        minPolarAngle={Math.PI / 3.5}
+        maxPolarAngle={Math.PI - Math.PI / 3}
       />
     </Canvas>
   );
 }
-function genRandomNumbers(arg0: number, length: number, arg2: number): number[] {
-  throw new Error("Function not implemented.");
+
+export function hexToRgb(hex: string) {
+  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+    return r + r + g + g + b + b;
+  });
+
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 }
 
-function hexToRgb(color: string): { r: number; g: number; b: number; } {
-  throw new Error("Function not implemented.");
-}
+export function genRandomNumbers(min: number, max: number, count: number) {
+  const arr = [];
+  while (arr.length < count) {
+    const r = Math.floor(Math.random() * (max - min)) + min;
+    if (arr.indexOf(r) === -1) arr.push(r);
+  }
 
+  return arr;
+}

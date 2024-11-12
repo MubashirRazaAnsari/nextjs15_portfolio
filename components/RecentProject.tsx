@@ -2,7 +2,7 @@ import React from 'react'
 import {projects} from '@/data'
 import dynamic from 'next/dynamic'
 import { FaLocationArrow } from 'react-icons/fa6'
-import Image from 'next/image';
+
 
 const PinContainer = dynamic(
     () => import("./ui/3d-pin").then((mod) => mod.PinContainer),
@@ -27,9 +27,9 @@ const RecentProject = () => {
                 <div className='relative flex items-center justify-center sm:w-[570px] 
                 w-[60vw] overflow-hidden sm:h[40vh] h-[20vh] lg:h-[30vh] mb-10 '>
                     <div className='relative w-full h-full overflow-hidden lg:rounded-3xl bg-[#13162d]'>
-                        <Image src="/bg.png" alt="bg-img" />
+                        <img src="/bg.png" alt="bg-img" />
                     </div>
-                    <Image src={img} alt={title} className='z-10 absolute bottom-0' />
+                    <img src={img} alt={title} className='z-10 absolute bottom-0' />
                 </div>
                 <h1 className='font-bold lg:text-2xl md:text-xl text-base line-clamp-1'>
                     {title}
@@ -42,7 +42,7 @@ const RecentProject = () => {
                         {iconLists.map((icon ,index)=>(
                             <div key={icon} className='border border-white/[0.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center'
                             style={{transform:`translateX(-${5* index * 2}px)`}}>
-                                <Image src={icon} alt={icon} className='p-2'/>
+                                <img src={icon} alt={icon} className='p-2'/>
 
                             </div>
 

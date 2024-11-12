@@ -1,8 +1,7 @@
-import Grid from "@/components/Grid";
+"use client";
+
 import Hero from "@/components/Hero";
-import RecentProject from "@/components/RecentProject";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import { IoMdContact } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { FaPeopleGroup } from "react-icons/fa6";
@@ -11,6 +10,16 @@ import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
 
+import dynamic from "next/dynamic";
+
+
+const RecentProject = dynamic(() => import("@/components/RecentProject"), {
+  ssr: false,
+});
+
+const Grid = dynamic(() => import("@/components/Grid"), {
+  ssr: false,
+});
 
 
 
