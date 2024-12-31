@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="40" height="40"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="8" fill="#FFFFFF"></rect>
+    <path d="M15 12L8 20L15 28" stroke="#0078D7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M25 12L32 20L25 28" stroke="#0078D7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M20 8L16 32" stroke="#0078D7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>
